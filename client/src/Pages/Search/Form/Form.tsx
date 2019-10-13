@@ -20,13 +20,6 @@ const SearchForm: React.FC<Props> = () => {
             .join('+')}&key=AIzaSyBJt1vo-eSxcfLwgu3KYJamG_ujOqGGsLo`
         );
 
-        console.log(
-          `https://www.googleapis.com/books/v1/volumes?q=${searchQuery.value
-            .trim()
-            .split(/\s+/g)
-            .join('+')}&key=AIzaSyBJt1vo-eSxcfLwgu3KYJamG_ujOqGGsLo`
-        );
-
         const data = await response.json();
 
         const books: BookProps[] = [];
