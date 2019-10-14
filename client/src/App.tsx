@@ -4,6 +4,7 @@ import { createGlobalStyle } from 'styled-components';
 import Normalize from 'react-normalize';
 
 import Router from 'Pages';
+import { white, purple } from 'Utilities';
 import { Footer, Header } from 'Elements';
 
 const App: React.FC = () => {
@@ -28,6 +29,7 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: ${purple};
   }
 
   body,
@@ -37,6 +39,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   #root {
+    background: ${white};
     display: flex;
     flex-direction: column;    
   }

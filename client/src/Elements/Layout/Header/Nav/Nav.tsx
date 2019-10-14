@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import NavItem from './NavItem';
 
@@ -17,14 +18,25 @@ const Nav: React.FC<Props> = () => {
   ];
 
   return (
-    <nav>
-      <ul>
+    <Navbar>
+      <Navlist>
         {pages.map(item => (
           <NavItem {...item} key={item.page} />
         ))}
-      </ul>
-    </nav>
+      </Navlist>
+    </Navbar>
   );
 };
 
 export default Nav;
+
+const Navbar = styled.nav`
+  font-size: 1.25rem;
+  line-height: 1.25rem;
+`;
+
+const Navlist = styled.ul`
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+`;
