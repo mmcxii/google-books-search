@@ -18,7 +18,7 @@ const initialState: StateProps = {
 };
 
 interface ActionProps {
-  type: 'ADD_BOOKS' | 'SAVE_BOOK';
+  type: 'ADD_BOOKS' | 'SAVE_BOOK' | 'LOAD_SAVED_BOOKS';
   payload: any;
 }
 const reducer = (state: StateProps, action: ActionProps): StateProps => {
@@ -28,6 +28,9 @@ const reducer = (state: StateProps, action: ActionProps): StateProps => {
 
     case 'SAVE_BOOK':
       return { ...state, savedBooks: [...state.savedBooks, action.payload] };
+
+    case 'LOAD_SAVED_BOOKS':
+      return { ...state, savedBooks: [...action.payload] };
   }
 };
 
