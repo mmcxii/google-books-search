@@ -32,7 +32,7 @@ router.post('/', async (req, res) => {
 
     const newBook = new Book({ title, authors, description, image, link });
 
-    await newBook.save();
+    newBook.save();
 
     res.status(200).json({ newBook });
   } catch (err) {

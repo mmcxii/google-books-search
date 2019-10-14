@@ -1,12 +1,17 @@
 import { config } from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
+
 import path from 'path';
 import booksRouter from './routes/api/books';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 config();
+
+// Body Parser Middleware
+app.use(bodyParser.json());
 
 // Connect to MongoDB
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/googleBooksSearch';
