@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
+import styled from 'styled-components';
 
-import { useFormInput } from 'Hooks';
 import { BooksAPIContext, BookProps } from 'BookContext';
+import { useFormInput } from 'Hooks';
+import { spacing, roundedInner, purpleLight, white, transition, purple } from 'Utilities';
 
 interface Props {}
 
-const SearchForm: React.FC<Props> = () => {
+const Form: React.FC<Props> = () => {
   const { dispatch } = useContext(BooksAPIContext);
   const [formWasSubmitted, setFormWasSubmitted] = useState<boolean>(false);
   const searchQuery = useFormInput('');
@@ -51,17 +53,47 @@ const SearchForm: React.FC<Props> = () => {
   }, [formWasSubmitted]);
 
   return (
-    <form
+    <SearchForm
       onSubmit={e => {
         e.preventDefault();
         setFormWasSubmitted(true);
       }}
     >
-      <input type='text' name='query' {...searchQuery} />
+      <Label htmlFor='query'>What would you like to read?</Label>
+      <Input type='text' name='query' placeholder='Enter the name of a book or series...' {...searchQuery} />
 
-      <button type='submit'>Search</button>
-    </form>
+      <SubmitButton type='submit'>Search</SubmitButton>
+    </SearchForm>
   );
 };
 
-export default SearchForm;
+export default Form;
+
+const SearchForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  margin: ${spacing.sm} 0;
+`;
+
+const Label = styled.label``;
+
+const Input = styled.input`
+  padding: ${spacing.sm} ${spacing.md};
+  margin: ${spacing.sm} 0;
+  border: none;
+  border-radius: ${roundedInner};
+`;
+
+const SubmitButton = styled.button`
+  cursor: pointer;
+  padding: ${spacing.sm} ${spacing.md};
+  border-radius: ${roundedInner};
+  border: none;
+  background: ${purpleLight};
+  color: ${white};
+  ${transition({ prop: 'background' })};
+
+  &:hover {
+    background: ${purple};
+  }
+`;

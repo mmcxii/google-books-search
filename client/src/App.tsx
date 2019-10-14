@@ -25,6 +25,8 @@ const App: React.FC = () => {
 export default App;
 
 const GlobalStyles = createGlobalStyle`
+@import url('https://fonts.googleapis.com/css?family=Merriweather|Montserrat&display=swap');
+
   * {
     margin: 0;
     padding: 0;
@@ -41,6 +43,11 @@ const GlobalStyles = createGlobalStyle`
   #root {
     background: ${white};
     display: flex;
-    flex-direction: column;    
+    flex-direction: column;
+    font-family: Montserrat, sans-serif;    
+  }
+
+  h1,h2,h3,h4,h5,h6 {
+    font-family: Merriweather, serif;
   }
 `;

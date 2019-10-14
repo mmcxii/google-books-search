@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { spacing } from 'Utilities';
@@ -9,7 +10,9 @@ interface Props {}
 
 const Header: React.FC<Props> = () => (
   <Wrapper>
-    <Logo>Community Book List</Logo>
+    <Logo>
+      <Link to='/'>Community Book List</Link>
+    </Logo>
 
     <Nav />
   </Wrapper>
@@ -34,4 +37,8 @@ const Wrapper = styled(Container).attrs({ as: 'header' })`
 const Logo = styled.h1`
   margin: 0;
   letter-spacing: 1px;
+
+  > a {
+    text-decoration: none;
+  }
 `;

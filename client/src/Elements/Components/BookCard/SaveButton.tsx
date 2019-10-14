@@ -1,6 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react';
+import styled from 'styled-components';
 
 import { BookProps, BooksAPIContext } from 'BookContext';
+import { spacing, roundedInner, white, purple, purpleLight, transition } from 'Utilities';
 
 interface Props {
   book: BookProps;
@@ -52,10 +54,26 @@ const SaveButton: React.FC<Props> = ({ book }) => {
   };
 
   return bookIsSaved ? (
-    <button onClick={() => unSaveBook()}>Unsave</button>
+    <Button onClick={() => unSaveBook()}>Unsave</Button>
   ) : (
-    <button onClick={() => saveBook()}>Save</button>
+    <Button onClick={() => saveBook()}>Save</Button>
   );
 };
 
 export default SaveButton;
+
+const Button = styled.button`
+  grid-area: button;
+
+  cursor: pointer;
+  padding: ${spacing.xs} ${spacing.sm};
+  border-radius: ${roundedInner};
+  border: none;
+  background: ${purpleLight};
+  color: ${white};
+  ${transition({ prop: 'background' })};
+
+  &:hover {
+    background: ${purple};
+  }
+`;
