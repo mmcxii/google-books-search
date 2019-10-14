@@ -4,6 +4,7 @@ import { createGlobalStyle } from 'styled-components';
 import Normalize from 'react-normalize';
 
 import Router from 'Pages';
+import { Footer, Header } from 'Elements';
 
 const App: React.FC = () => {
   return (
@@ -12,7 +13,9 @@ const App: React.FC = () => {
       <GlobalStyles />
 
       <BrowserRouter>
+        <Header />
         <Router />
+        <Footer />
       </BrowserRouter>
     </>
   );
@@ -25,5 +28,16 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+  }
+
+  body,
+  html,
+  #root {
+    min-height:100vh
+  }
+
+  #root {
+    display: flex;
+    flex-direction: column;    
   }
 `;
