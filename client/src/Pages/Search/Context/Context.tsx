@@ -1,6 +1,7 @@
 import React, { createContext, useReducer } from 'react';
 
 export interface BookProps {
+  _id?: string;
   title: string;
   authors: string[];
   description: string;
@@ -9,19 +10,24 @@ export interface BookProps {
 }
 interface StateProps {
   searchResults: BookProps[];
+  savedBooks: BookProps[];
 }
 const initialState: StateProps = {
   searchResults: [],
+  savedBooks: [],
 };
 
 interface ActionProps {
-  type: 'ADD_BOOKS';
+  type: 'ADD_BOOKS' | 'SAVE_BOOK';
   payload: any;
 }
 const reducer = (state: StateProps, action: ActionProps): StateProps => {
   switch (action.type) {
     case 'ADD_BOOKS':
-      return { searchResults: [...action.payload] };
+      return { ...state, searchResults: [...action.payload] };
+
+    case 'SAVE_BOOK':
+      return { ...state, savedBooks: [...state.savedBooks, action.payload] };
   }
 };
 

@@ -47,6 +47,7 @@ const SearchForm: React.FC<Props> = () => {
     if (formWasSubmitted) {
       performSearch();
     }
+    // eslint-disable-next-line
   }, [formWasSubmitted]);
 
   return (
