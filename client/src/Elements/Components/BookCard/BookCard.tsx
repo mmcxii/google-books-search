@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { BookProps } from '../../Context';
+import { BookProps } from 'BookContext';
 import SaveButton from './SaveButton';
 
 interface Props {

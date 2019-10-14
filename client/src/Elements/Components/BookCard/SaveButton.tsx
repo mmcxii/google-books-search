@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 
-import { BookProps, BooksAPIContext } from '../../Context';
+import { BookProps, BooksAPIContext } from 'BookContext';
 
 interface Props {
   book: BookProps;
@@ -11,26 +11,10 @@ const SaveButton: React.FC<Props> = ({ book }) => {
   const [bookIsSaved, setBookIsSaved] = useState<boolean>(false);
 
   useEffect(() => {
-    const checkIfBookIsSaved = async () => {
-      try {
-        const response: Response = await fetch('api/books', { method: 'GET' });
-        const data: BookProps[] = await response.json();
-
-        data.forEach(item => {
-          if (item.title === book.title) {
-            setBookIsSaved(true);
-            dispatch({ type: 'SAVE_BOOK', payload: item });
-          }
-        });
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    checkIfBookIsSaved();
-
-    // eslint-disable-next-line
-  }, []);
+    if (state.savedBooks.some((item: BookProps) => item.title === book.title)) {
+      setBookIsSaved(true);
+    }
+  }, [state.savedBooks]);
 
   const saveBook = async () => {
     try {

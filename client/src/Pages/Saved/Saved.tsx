@@ -1,26 +1,21 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 
-import { BookProps, BooksAPIContext } from '../Search';
+import { BookProps, BooksAPIContext } from 'BookContext';
+import { useSavedBooks } from 'Hooks';
+import { BookCard } from 'Elements';
 
 interface Props {}
 
 const Saved: React.FC<Props> = () => {
-  const { state, dispatch } = useContext(BooksAPIContext);
+  const { state } = useContext(BooksAPIContext);
 
-  useEffect(() => {
-    const getSavedBooks = async () => {
-      const response: Response = await fetch('/api/books', { method: 'GET' });
-      const data: BookProps[] = await response.json();
+  useSavedBooks();
 
-      dispatch({ type: 'LOAD_SAVED_BOOKS', payload: data });
-    };
-    getSavedBooks();
-  }, []);
   return (
     <>
       <h2>Saved Books</h2>
       {state.savedBooks.map((item: BookProps) => (
-        <h3>{item.title}</h3>
+        <BookCard book={item} key={item._id} />
       ))}
     </>
   );
